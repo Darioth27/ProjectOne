@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/ProjectOne/static/css/mainMenu.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<title>Welcome</title>
+</head>
+<body class="container" style="background-color: #334466">
+	<header style="background-color: #DDDDEE">
+		<nav class="navbar">
+			<a class="navbar-brand"><img
+				src="https://i.imgur.com/Gksy2sE.png"
+				style="width: auto; height: 70px;" /></a>
+			<ul class="navbar-nav">
+				<form action="logout" method="post">
+					<input type="submit" value="Logout" class="btn btn-info" />
+				</form>
+			</ul>
+		</nav>
+	</header>
+	<div class="nav-scroller py-2 mb-3" style="background-color: #DDDDEE">
+		<!-- <nav class="<nav class="nav nav-tabs d-flex justify-content-between">
+          <a id="account" data-toggle="tab" class="p-2 text-muted" href="#account">Account</a>
+          <a id="makeRequest" data-toggle="tab" class="p-2 text-muted" href="#create-request">Create Request</a>
+          <a id="viewRequests" data-toggle="tab" class="p-2 text-muted" href="#view-requests">View Requests</a>
+        </nav> -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" class="p-2 text-muted"
+				href="#home">Home</a></li>
+			<li><a id="account" data-toggle="tab" class="p-2 text-muted"
+				href="#accountView">Account</a></li>
+			<li><a id="makeRequest" data-toggle="tab" class="p-2 text-muted"
+				href="#requestCreation">Create Request</a></li>
+			<li><a id="viewRequests" data-toggle="tab"
+				class="p-2 text-muted" href="#requestsView">View Requests</a></li>
+			<li><a id="manageRequests" data-toggle="tab"
+				class="p-2 text-muted" href="#manageReq">Manage Requests</a></li>
+			<li><a id="manageEmployees" data-toggle="tab"
+				class="p-2 text-muted" href="#manageEmp">Manage Employees</a></li>
+		</ul>
+	</div>
+
+	<div class="tab-content div-margin" style="background-color: #DDDDEE;">
+		<div id="home" class="tab-pane fade show active">
+			<div class="content jumbotron" style="background-color: #EEEEEE">
+				<h1 id="welcomeText" class="display-5"></h1>
+				<br>
+				<p>Monibac is here for your money-back needs.</p>
+			</div>
+		</div>
+		<div id="accountView" class="tab-pane fade">
+			<div id="accountInfoDiv" class="offset-1"></div>
+			<div class="offset-10">
+				<input id="editAccountBtn" type="button" value="Edit"
+					class="btn btn-warning" data-toggle="modal"
+					data-target="#accountEditModal" />
+			</div>
+			<div class="modal" id="accountEditModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Information</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form action="editAccount" method="post">
+								<!-- <img src="http://localhost:8080/ProjectOne/assets/monibac-logo.png"/> -->
+								Username: <input type="text" class="form-control"
+									id="usernameInput" name="userEdit" value="Username" required="" />
+								<br> Password: <input type="password" class="form-control"
+									id="passwordInput" name="passEdit" value="Password" required="" />
+								<br> First Name: <input type="text" class="form-control"
+									id="firstNameInput" name="fNameEdit" value="First Name"
+									required="" /> <br> Last Name: <input type="text"
+									class="form-control" id="lastNameInput" name="lNameEdit"
+									value="Last Name" required="" /> <br> <input
+									class="btn btn-primary btn-block" type="submit"
+									id="updateSubmit" value="Confirm" />
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="requestCreation" class="tab-pane fade">
+			<h3>Create Reimbursement Request</h3>
+			<p>Please fill out the information below:</p>
+			<section>
+				<form action="createRequest" method="post">
+					<!-- <img src="http://localhost:8080/ProjectOne/assets/monibac-logo.png"/> -->
+					Amount: <input type="number" step="0.01" class="form-control col-3"
+						id="reqAmountInput" name="reqAmountInput" placeholder="0.00"
+						required="" /> <br> Description:
+					<textarea rows="3" cols="30" class="form-control"
+						id="descriptionInput" name="descriptionInput"></textarea>
+					<br> <input class="btn btn-primary btn-block" type="submit"
+						id="reimbursementSubmit" value="Submit" />
+				</form>
+			</section>
+		</div>
+		<div id="requestsView" class="tab-pane fade">
+			<h4>Pending Requests</h4>
+			<table id="requestsTablePending"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="reqTablePending">
+					<th>ID</th>
+					<th>Amount</th>
+					<th>Information</th>
+					<th>Status</th>
+				</tbody>
+			</table>
+			<h4>Approved Requests</h4>
+			<table id="requestsTableApproved"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="reqTableApproved">
+					<th>ID</th>
+					<th>Amount</th>
+					<th>Information</th>
+					<th>Status</th>
+				</tbody>
+			</table>
+		</div>
+		<div id="manageReq" class="tab-pane fade">
+			<h3 id="empNameField"></h3>
+			<h4>Pending Requests</h4>
+			<table id="allRequestsPending"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="allReqPending">
+					<th>ID</th>
+					<th>Amount</th>
+					<th>Information</th>
+					<th>Status</th>
+					<th>R_ID</th>
+				</tbody>
+			</table>
+			<h4>Resolved Requests</h4>
+			<table id="allRequestsApproved"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="allReqApproved">
+					<th>ID</th>
+					<th>Amount</th>
+					<th>Information</th>
+					<th>Status</th>
+					<th>R_ID</th>
+					<th>Approver ID</th>
+				</tbody>
+			</table>
+			<br>
+			<div class="row">
+				<div class="col-6">
+				<h6>Enter Request ID</h6>
+					<input type="number" class="form-control" id="requestToApprove" />
+					<br>
+					<button id="reqApproveBtn" class="btn btn-success btn-block">Approve</button>
+					<button id="reqDenyBtn" class="btn btn-danger btn-block">Deny</button>
+				</div>
+				<div class="col-6">
+				<h6>Enter Employee ID</h6>
+					<input type="number" class="form-control" id="employeeToFilter" />
+					<br>
+					<button id="filterBtn" class="btn btn-info btn-block">Filter</button>
+				</div>
+			</div>
+			
+		</div>
+
+		<div id="manageEmp" class="tab-pane fade">
+
+			<!-- 			<div id="empReqTable" style="display:none">
+			<h4>Request List</h4>
+			<table id="erTable"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="erTableBody">
+					<th>ID</th>
+					<th>Amount</th>
+					<th>Information</th>
+					<th>Status</th>
+				</tbody>
+			</table>
+				<button type="button" id="hideEmpTable" class="btn btn-danger">Back</button>
+			</div> -->
+
+			<h4 id="empHeader4">Employee List</h4>
+			<table id="employeeTable"
+				class="table table-bordered table-hover table-striped">
+				<tbody id="empTable">
+					<th>ID</th>
+					<th>Username</th>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>User Type</th>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- <script type="text/javascript"
+		src="http://localhost:8080/ProjectOne/static/menu.js"></script> -->
+	<script type="text/javascript"
+		src="http://localhost:8080/ProjectOne/static/manager.js"></script>
+</body>
+</html>
